@@ -10,6 +10,7 @@
             "@organisms/*": ["./src/components/organisms/*"],
             "@pages/*": ["./src/components/pages/*"],
             "@templates/*": ["./src/components/templates/*"],
+            "@stores/*": ["./src/stores/*"],
             "@config/*": ["./src/config/*"]
         }
     },

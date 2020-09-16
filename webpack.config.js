@@ -17,7 +17,8 @@ module.exports = {
             '@molecules': path.resolve(__dirname, 'src/components/molecules/'),
             '@organisms': path.resolve(__dirname, 'src/components/organisms/'),
             '@pages': path.resolve(__dirname, 'src/components/pages/'),
-            '@templates': path.resolve(__dirname, 'src/components/templates/')
+            '@templates': path.resolve(__dirname, 'src/components/templates/'),
+            '@stores': path.resolve(__dirname, 'src/stores/')
         }
     },
     devServer: {
