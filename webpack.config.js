@@ -18,6 +18,7 @@ module.exports = {
             '@organisms': path.resolve(__dirname, 'src/components/organisms/'),
             '@pages': path.resolve(__dirname, 'src/components/pages/'),
             '@templates': path.resolve(__dirname, 'src/components/templates/'),
+            '@constants': path.resolve(__dirname, 'src/constants/'),
             '@stores': path.resolve(__dirname, 'src/stores/')
         }
     },

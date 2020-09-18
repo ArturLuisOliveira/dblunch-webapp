@@ -11,6 +11,7 @@
             "@pages/*": ["./src/components/pages/*"],
             "@templates/*": ["./src/components/templates/*"],
             "@stores/*": ["./src/stores/*"],
+            "@constants/*": ["./src/constants/*"],
             "@config/*": ["./src/config/*"]
         }
     },

@@ -1,91 +1,32 @@
 import React, { useMemo, useReducer } from 'react';
-import { Alert, Table, Button, Modal, Input, Space, Layout } from 'antd';
-import { PlusSquareOutlined } from '@ant-design/icons';
+import { Space, Layout } from 'antd';
 const { Footer, Content } = Layout;
-const { Column } = Table;
-import { reducer, initialState, actions } from '@stores/home';
+import { reducer, initialState } from '@stores/home';
 import { context as HomeContext } from '@stores/home';
-import { useHistory } from 'react-router-dom';
-
-const columns = [
-    {
-        title: 'Restaurante',
-        dataIndex: 'restaurant',
-        key: 'restaurant'
-    },
-    {
-        title: '',
-        dataIndex: 'action',
-        key: 'action'
-    }
-];
-
-const data = [
-    {
-        key: '1',
-        restaurant: 'Gelson Lanches'
-    },
-    {
-        key: '2',
-        restaurant: 'Speed Lanches'
-    }
-];
+import Info from '@organisms/info';
+import RestaurantsTable from '@organisms/restaurants_table/RestaurantsTable';
+import LogoutButton from '@molecules/logout_button';
+import AddRestaurantButton from '@molecules/add_restaurant_button/AddRestaurantButton';
+import AddRestaurantModal from '@organisms/add_restaurant_modal/AddRestaurantModal';
 
 function Home() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const history = useHistory();
     const contextValue = useMemo(() => ({ ...state, dispatch }), [state, dispatch]);
 
     return (
         <div className="flex column justify-space-between full-min-height">
             <HomeContext.Provider value={contextValue}>
-                <Alert message="Warning text" type="success" banner />
-
+                <Info />
                 <Content className="margin-2">
-                    <Table
-                        dataSource={data}
-                        pagination={{
-                            total: columns.length,
-                            pageSize: columns.length,
-                            hideOnSinglePage: true
-                        }}
-                    >
-                        <Column title="Restaurantes" dataIndex="restaurant" key="restaurant" />
-                        {state.votingIsAvailable && (
-                            <Column
-                                align="right"
-                                title=""
-                                dataIndex="action"
-                                key="action"
-                                render={() => <Button type="link">Votar</Button>}
-                            />
-                        )}
-                    </Table>
+                    <RestaurantsTable />
                 </Content>
                 <Footer>
                     <Space align="center" direction="vertical" className="full-width">
-                        <Button
-                            onClick={() => dispatch({ type: actions.SET_RESTAURANT_MODAL_IS_OPEN, payload: true })}
-                            type="primary"
-                        >
-                            Adicionar Restaurante
-                        </Button>
-                        <Button onClick={() => history.push('/login')} type="link">
-                            Logout
-                        </Button>
+                        <AddRestaurantButton />
+                        <LogoutButton />
                     </Space>
                 </Footer>
-                <Modal
-                    title="Adicionar Restaurante"
-                    visible={state.restaurantModalIsOpen}
-                    onOk={() => {
-                        //adicionar restaurante
-                        dispatch({ type: actions.SET_RESTAURANT_MODAL_IS_OPEN, payload: false });
-                    }}
-                    onCancel={() => dispatch({ type: actions.SET_RESTAURANT_MODAL_IS_OPEN, payload: false })}
-                >
-                    <Input size="large" placeholder="nome" prefix={<PlusSquareOutlined />} />
-                </Modal>
+                <AddRestaurantModal />
             </HomeContext.Provider>
         </div>
     );
