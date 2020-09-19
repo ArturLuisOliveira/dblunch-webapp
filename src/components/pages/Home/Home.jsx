@@ -4,7 +4,7 @@ const { Footer, Content } = Layout;
 import { reducer, initialState } from '@stores/home';
 import { context as HomeContext } from '@stores/home';
 import Info from '@organisms/info';
-import RestaurantsTable from '@organisms/restaurants_table/RestaurantsTable';
+import RestaurantsTable from '@organisms/restaurants_table';
 import LogoutButton from '@molecules/logout_button';
 import AddRestaurantButton from '@molecules/add_restaurant_button/AddRestaurantButton';
 import AddRestaurantModal from '@organisms/add_restaurant_modal/AddRestaurantModal';

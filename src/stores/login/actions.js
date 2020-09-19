@@ -1,0 +1,2 @@
+export const SET_EMAIL_INPUT = 'SET_EMAIL_INPUT';
+export const SET_PASSWORD_INPUT = 'SET_PASSWORD_INPUT';

@@ -1,38 +1,19 @@
 import { Button, Popconfirm, Table } from 'antd';
 import { context } from '@stores/home';
 import React, { useContext } from 'react';
+import { useRestaurants } from '../../../utils/hooks/home';
 const { Column } = Table;
-const columns = [
-    {
-        title: 'Restaurante',
-        dataIndex: 'restaurant',
-        key: 'restaurant'
-    },
-    {
-        title: '',
-        dataIndex: 'action',
-        key: 'action'
-    }
-];
 
-const data = [
-    {
-        key: '1',
-        restaurant: 'Gelson Lanches'
-    },
-    {
-        key: '2',
-        restaurant: 'Speed Lanches'
-    }
-];
 function RestaurantsTable() {
     const { votingIsAvailable } = useContext(context);
+    const restaurants = useRestaurants();
+
     return (
         <Table
-            dataSource={data}
+            dataSource={restaurants}
             pagination={{
-                total: columns.length,
-                pageSize: columns.length,
+                total: restaurants.length,
+                pageSize: restaurants.length,
                 hideOnSinglePage: true
             }}
         >

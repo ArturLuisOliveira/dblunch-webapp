@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const webpack = require('webpack');
 
@@ -19,7 +20,10 @@ module.exports = {
             '@pages': path.resolve(__dirname, 'src/components/pages/'),
             '@templates': path.resolve(__dirname, 'src/components/templates/'),
             '@constants': path.resolve(__dirname, 'src/constants/'),
-            '@stores': path.resolve(__dirname, 'src/stores/')
+            '@hooks': path.resolve(__dirname, 'src/utils/hooks'),
+            '@helpers': path.resolve(__dirname, 'src/utils/helpers'),
+            '@stores': path.resolve(__dirname, 'src/stores/'),
+            '@api': path.resolve(__dirname, 'src/api/')
         }
     },
     devServer: {
@@ -71,7 +75,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        publicPath: '/' // <- this right here
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebPackPlugin({
@@ -81,6 +85,7 @@ module.exports = {
         new CompressionPlugin(),
         new webpack.DefinePlugin({
             'process.env.PUBLIC_PATH': JSON.stringify(PUBLIC_PATH)
-        })
+        }),
+        new Dotenv()
     ]
 };
