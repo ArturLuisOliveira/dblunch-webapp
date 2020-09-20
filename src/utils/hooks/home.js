@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RestaurantApi from '../../api/Restaurant';
+import RestaurantApi from '@api/Restaurant';
 
 export const useRestaurants = () => {
     const [restaurants, setRestaurants] = useState([]);

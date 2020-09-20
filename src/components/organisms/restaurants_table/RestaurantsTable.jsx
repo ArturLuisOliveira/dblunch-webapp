@@ -2,6 +2,7 @@ import { Button, Popconfirm, Table } from 'antd';
 import { context } from '@stores/home';
 import React, { useContext } from 'react';
 import { useRestaurants } from '../../../utils/hooks/home';
+import { vote } from '@helpers/home';
 const { Column } = Table;
 
 function RestaurantsTable() {
@@ -25,12 +26,12 @@ function RestaurantsTable() {
                     title=""
                     dataIndex="action"
                     key="action"
-                    render={() => (
+                    render={(value, record) => (
                         <>
                             <Popconfirm
                                 placement="left"
                                 title={'Votar neste restaurante?'}
-                                onConfirm={() => {}}
+                                onConfirm={() => vote(record.restaurant)}
                                 okText="Yes"
                                 cancelText="No"
                             >
