@@ -7,3 +7,5 @@ node_modules/
 yarn.lock
 .env
 *.feature
+dist/
+.DS_Store

@@ -1,11 +1,14 @@
 import { Button, Popconfirm, Table } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRestaurants, useVoting } from '../../../utils/hooks/home';
+import { context } from '@stores/home';
 const { Column } = Table;
 
 function RestaurantsTable() {
     const restaurants = useRestaurants();
-    const { vote, votingIsAvailable } = useVoting();
+    const { dispatch, votingIsAvailable } = useContext(context);
+
+    const vote = useVoting(dispatch);
 
     return (
         <Table

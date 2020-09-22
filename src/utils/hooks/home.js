@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import RestaurantApi from '@api/Restaurant';
 import VoteApi from '@api/Vote';
 import { message } from 'antd';
+import MessageApi from '@api/Message';
+import { actions } from '@stores/home';
 
 export const useRestaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -14,19 +16,28 @@ export const useRestaurants = () => {
     return restaurants;
 };
 
-export const useVoting = () => {
-    const [votingIsAvailable, setVotingIsAvailable] = useState(false);
+export const useVoting = dispatch => {
+    const vote = useCallback(
+        async restaurant =>
+            VoteApi.vote({ restaurant })
+                .then(() => {
+                    dispatch({ type: actions.SET_VOTING_IS_AVAILABLE, payload: false });
+                    message.success('Voto efetuado com sucesso.');
+                })
+                .catch(message.error('Ocorreu um erro ao efetuar seu voto')),
+        [dispatch]
+    );
 
-    const vote = async restaurant =>
-        VoteApi.vote({ restaurant })
-            .then(() => {
-                setVotingIsAvailable(false);
-                message.success('Voto efetuado com sucesso.');
-            })
-            .catch(message.error('Ocorreu um erro ao efetuar seu voto'));
+    return vote;
+};
 
+export const useMessages = dispatch => {
     useEffect(() => {
-        VoteApi.available().then(res => setVotingIsAvailable(res.available));
+        MessageApi.getMessage()
+            .then(res => {
+                dispatch({ type: actions.SET_INFO_MESSAGE, payload: { ...res } });
+                dispatch({ type: actions.SET_VOTING_IS_AVAILABLE, payload: res.enabled });
+            })
+            .catch(console.error);
     }, []);
-    return { vote, votingIsAvailable };
 };

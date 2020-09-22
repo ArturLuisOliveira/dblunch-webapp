@@ -4,7 +4,8 @@ import { context } from '@stores/home';
 
 function Info() {
     const { infoMessage } = useContext(context);
-    return <Alert message={infoMessage.message} type={infoMessage.type} banner />;
+    if (!infoMessage) return null;
+    return <Alert message={infoMessage.msg} type={infoMessage.type} banner />;
 }
 
 export default Info;

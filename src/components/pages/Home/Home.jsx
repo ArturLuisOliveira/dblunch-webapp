@@ -8,10 +8,13 @@ import RestaurantsTable from '@organisms/restaurants_table';
 import LogoutButton from '@molecules/logout_button';
 import AddRestaurantButton from '@molecules/add_restaurant_button/AddRestaurantButton';
 import AddRestaurantModal from '@organisms/add_restaurant_modal/AddRestaurantModal';
+import { useMessages } from '@hooks/home';
 
 function Home() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const contextValue = useMemo(() => ({ ...state, dispatch }), [state, dispatch]);
+
+    useMessages(dispatch);
 
     return (
         <div className="flex column justify-space-between full-min-height">

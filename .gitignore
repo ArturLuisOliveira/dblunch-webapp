@@ -20,4 +20,5 @@ sketch
 dist
 yarn.lock
 *.gitkeep*
+.DS_Store
 # End of https://www.toptal.com/developers/
