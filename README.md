@@ -50,12 +50,12 @@ yarn lint:fix
 
 ## Todo
 
--implement e2e tests.
--implement cookie cryptography for token instead of using local storage.
--test on diferent browsers.
--finish disable restaurant voted in the week.
--add route blocking for user without auth.
--add loader while fetching or posting data.
--maybe add push notification for the lunch.
--fix small bugs regarding request/refresh.
--implement add restaurant
+-   implement e2e tests.
+-   implement cookie cryptography for token instead of using local storage.
+-   test on diferent browsers.
+-   finish disable restaurant voted in the week.
+-   add route blocking for user without auth.
+-   add loader while fetching or posting data.
+-   maybe add push notification for the lunch.
+-   fix small bugs regarding request/refresh.
+-   implement add restaurant
